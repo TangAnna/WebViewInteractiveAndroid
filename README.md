@@ -5,10 +5,10 @@ Android使用WebView实现与js交互<br/>
 在Android中提供了WebView控件来完成加载web页面的加载，也能通过它来实现两者之间的数据交互；<br/>
 面试中也会被问到这方面的知识，所以学习Android和web的交互是开发人员必不可少的一项技能；<br/>
 
-首先是WebView经常用到的一些方法：<br/>
+**首先是WebView经常用到的一些方法**<br/>
 //TODO :下周总结
 
-**Js调用Android的实现方式：**<br/>
+**Js调用Android的实现方式**<br/>
 
 方法一：<br/>
 
@@ -35,7 +35,7 @@ Android使用WebView实现与js交互<br/>
     //我的是本地的html页面路径写法
      mWebView.loadUrl("file:///android_asset/index.html");
 
-**Android调用Js中的实现方式：**<br/>
+**Android调用Js中的实现方式**<br/>
 
 方法一：<br/>
 
