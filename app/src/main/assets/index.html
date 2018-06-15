@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebView</title>
+    <style type="text/css">
+        body {
+            background: #1fffeb;
+        }
+
+        .btn {
+            background: #faff12;
+            line-height: 40px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<h2>WebVie与Android交互</h2>
+<div><span>请输入要传递的值：</span><input type="text" id="input"></div>
+<div id="btn"><span class="btn">调用Android方法</span></div>
+<script type="text/javascript">
+    var btnEle = document.getElementById("btn");
+    var inputEle = document.getElementById("input");
+    btnEle.addEventListener("click", function () {
+        var value = inputEle.value;
+        //window.后面的值要与Android中的 addJavascriptInterface（）第二个实参保持一致
+        // mWebView.addJavascriptInterface(new ImoocInterface(), "imoocInterface")；
+        if (window.imoocInterface) {
+            imoocInterface.setValue(value);
+        } else {
+            alert("imoocLauncher not found")
+        }
+    })
+</script>
+</body>
+</html>
