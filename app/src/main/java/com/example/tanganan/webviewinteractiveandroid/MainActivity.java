@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, JsCallAndroidActivity.class));
                 break;
             case R.id.btn_main_android:
+                startActivity(new Intent(this, AndroidCallJsActivity.class));
+
                 break;
         }
     }

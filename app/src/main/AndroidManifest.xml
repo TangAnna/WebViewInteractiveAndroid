@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".JsCallAndroidActivity">
         </activity>
+        <activity android:name=".AndroidCallJsActivity">
+        </activity>
     </application>
 
 </manifest>
