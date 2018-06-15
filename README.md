@@ -8,11 +8,12 @@ Android使用WebView实现与js交互
 //TODO :下周总结
 
 **Js调用Android的实现方式：**<br/>
+
 方法一：<br/>
 
 步骤：<br/>
 1.设置webView可以加载Js;<br/>
-2.创建Js接口类；
+2.创建Js接口类；<br/>
 3.设置Js接口；<br/>
 4.加载Web页面；<br/>
 
@@ -33,6 +34,55 @@ Android使用WebView实现与js交互
     //我的是本地的html页面路径写法
      mWebView.loadUrl("file:///android_asset/index.html");
 
-**Android调用Js中的方法：**<br/>
+**Android调用Js中的实现方式：**<br/>
 
-方法一：
+方法一：<br/>
+
+步骤：<br/>
+1.设置webView可以加载Js;<br/>
+2.加载Web页面；<br/>
+3.在需要的地方调用loadUrl(String url)方法实现交互；<br/>
+
+代码实现：
+    
+    //设置webview可以加载js
+    mWebView.getSettings().setJavaScriptEnabled(true);
+    
+    //设置webview加载的网页
+    mWebView.loadUrl("file:///android_asset/index.html");
+实现点击Button将EditText上输入的内容显示到Html的input上<br/>
+    
+    //使用loadUrl()方法，参数是一段js代码 前面拼接javascript: window.后面的是js中的方法名（先判断是否含有此方法在调用）
+    WebView.loadUrl("javascript:if(window.androidSetValue){window.androidSetValue('" + str + "')}");
+    
+方法二：
+
+步骤：<br/>
+1.设置webView可以加载Js;<br/>
+2.加载Web页面；<br/>
+3.在需要的地方调用loadUrl(String url)方法实现交互；<br/>
+
+代码实现：<br/>
+前两步都是一样的，只有在交互的时候不一样<br/>
+    
+    //方法二：（只适用于Android4.4及以上）使用evaluateJavascript()方法
+    //第一个参数与上一种方法一致，第二个参数是获取js返回值得方法
+    mWebView.evaluateJavascript("javascript:if(window.androidSetValue){window.androidSetValue('" + str + "')}", new ValueCallback<String>() {
+           @Override
+            public void onReceiveValue(String value) {
+                 //获取js的返回值
+                Log.d("TAG", "onReceiveValue: " + value);
+            }
+    });
+    
+两种方法发的比较：<br/>
+1.loadUrl()方式方便简洁，evaluateJavascript()方式效率更高；<br/>
+2.evaluateJavascript()方式版本兼容性较差只适合在4.4版本及以上使用，所以推荐两种方式根据Android版本结合使用;<br/>
+3.evaluateJavascript()方式可以方便的获取js的返回值，loadUrl()方式获取返回值麻烦；<br/>
+
+两种方式的适用场景：<br/>
+loadUrl()没有返回值，对性能要求不高；<br/>
+evaluateJavascript() Android 4.4版本及以上，有返回值，对性能要求高的情况；<br/>
+
+
+
