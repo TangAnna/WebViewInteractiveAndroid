@@ -1,5 +1,6 @@
 # WebViewInteractiveAndroid
-Android使用WebView实现与js交互
+Android使用WebView实现与js交互<br/>
+
 现在很多App中使用了Web的方式实现其中的一些功能，这样的开发模式避免不了需要Android和Web要进行数据交互，
 在Android中提供了WebView控件来完成加载web页面的加载，也能通过它来实现两者之间的数据交互；<br/>
 面试中也会被问到这方面的知识，所以学习Android和web的交互是开发人员必不可少的一项技能；<br/>
