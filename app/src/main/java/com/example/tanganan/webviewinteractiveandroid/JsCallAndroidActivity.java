@@ -21,8 +21,8 @@ public class JsCallAndroidActivity extends AppCompatActivity implements ImoocInt
         mWebView.getSettings().setJavaScriptEnabled(true);
         //第二步：设置js接口
         // 参数1：创建的js接口类的对象
-        //参数2：js方法中用if判断的值，这两个值要保持一致  if (window.imoocLauncher)
-        mWebView.addJavascriptInterface(new ImoocInterface(this), "imoocInterface");
+        //参数2：js方法中用if判断的值，这两个值要保持一致  if (window.Android)
+        mWebView.addJavascriptInterface(new ImoocInterface(this), "android");
         //设置webview加载的页面
         mWebView.loadUrl("file:///android_asset/index.html");
 
@@ -33,6 +33,8 @@ public class JsCallAndroidActivity extends AppCompatActivity implements ImoocInt
     public void getValue(String value) {
         if (!TextUtils.isEmpty(value)) {
             mTvShow.setText(value);
+        }else {
+            mTvShow.setText("错误");
         }
     }
 }

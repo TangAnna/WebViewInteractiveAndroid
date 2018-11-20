@@ -24,12 +24,12 @@
     var inputEle = document.getElementById("input");
     btnEle.addEventListener("click", function () {
         var value = inputEle.value;
-        //window.后面的值要与Android中的 addJavascriptInterface（）第二个实参保持一致
-        // mWebView.addJavascriptInterface(new ImoocInterface(), "imoocInterface")；
-        if (window.imoocInterface) {
-            imoocInterface.setValue(value);
+        //window.后面的值要与Android中的 addJavascriptInterface（）第二个实参保持一致  相当于android就是接口的实例了
+        // mWebView.addJavascriptInterface(new imoocInterface(), "android")；
+        if (window.android) {
+            android.setValue(value);
         } else {
-            alert("imoocLauncher not found")
+            alert("imoocInterface not found")
         }
     })
     var androidSetValue = function (str) {

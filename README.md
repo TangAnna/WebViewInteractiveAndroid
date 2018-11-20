@@ -27,8 +27,8 @@ Android使用WebView实现与js交互<br/>
 
     //设置js接口
     //参数1：创建的js接口类的对象
-    //参数2：js方法中用if判断的值，这两个值要保持一致  if (window.imoocLauncher)
-    mWebView.addJavascriptInterface(new ImoocInterface(this), "imoocInterface");
+    //参数2：js方法中用if判断的值，这两个值要保持一致  if (window.android) 这里可以认为设置android就是ImoocInterface接口实例的代理人
+    mWebView.addJavascriptInterface(new ImoocInterface(this), "android");
     
 设置要加载的网页
     
@@ -85,5 +85,24 @@ Android使用WebView实现与js交互<br/>
 loadUrl()没有返回值，对性能要求不高；<br/>
 evaluateJavascript() Android 4.4版本及以上，有返回值，对性能要求高的情况；<br/>
 
+js部分代码：
 
+    <script type="text/javascript">
+        var btnEle = document.getElementById("btn");
+        var inputEle = document.getElementById("input");
+        btnEle.addEventListener("click", function () {
+            var value = inputEle.value;
+            //window.后面的值要与Android中的 addJavascriptInterface（）第二个实参保持一致  相当于android就是接口的实例了
+            // mWebView.addJavascriptInterface(new imoocInterface(), "android")；
+            if (window.android) {
+                android.setValue(value);
+            } else {
+                alert("imoocInterface not found")
+            }
+        })
+        var androidSetValue = function (str) {
+            inputEle.value = str;
+            return "调用成功";
+        }
+    </script>
 
